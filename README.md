@@ -1,54 +1,64 @@
-The [GitBook][8] version of this book, for easy online reading, can be found here:
-[https://checkmarx.gitbooks.io/go-scp][9]
+你可以用以下格式下载这本书。[PDF][12], [Mobi][13] 和
+[ePub][14]。
 
-The book can be downloaded in PDF, Mobi and ePub formats here:
-[https://www.gitbook.com/book/checkmarx/go-scp][10]
+# 简介
 
-# Introduction
+《Go语言--网络应用安全编码实践》是一本为使用[Go编程语言][1]的人编写的指南。
+任何使用[Go编程语言][1]并旨在将其用于Web
+开发。
 
-Go Language - Web Application Secure Coding Practices is a guide written for
-anyone who is using the [Go Programming Language][1] and aims to use it for web
-development.
+本书是由[Checkmarx安全研究小组][2]合作编写的，它遵循了以下原则
+它遵循
+OWASP安全编码实践--快速参考指南v2（稳定版）][3]发布。
 
-This book is collaborative effort of [Checkmarx Security Research Team][2] and
-it follows the
-[OWASP Secure Coding Practices - Quick Reference Guide v2 (stable)][3] release.
+本书的主要目标是帮助开发人员避免常见的错误，同时学习新的编程方法。
+同时，通过 "实践方法 "学习一种新的编程语言。
+"亲身实践的方法"。
+本书在 "如何安全地做 "方面提供了一个很好的细节，显示了
+在开发过程中会出现什么样的安全问题。
 
-The main goal of this book is to help developers avoid common mistakes while at
-the same time, learning a new programming language through a
-"hands-on approach".
-This book provides a good level of detail on "how to do it securely" showing
-what kind of security problems could arise during development.
+## 本书的读者
 
-## About Checkmarx
+《Go安全编码实践指南》的主要读者是开发人员。
+特别是那些以前有其他编程语言经验的人。
 
-Checkmarx is an Application Security software company, whose mission is to
-provide enterprise organizations with application security testing products
-and services that empower developers to deliver secure applications. Amongst
-the company's 1,000 customers are five of the world's top 10 software vendors,
-four of the top American banks, and many Fortune 500 and government
-organizations, including SAP, Samsung and Salesforce.com.
+本书对那些第一次学习编程的人来说也是一个很好的参考。
+本书对那些已经完成了[Go之旅][8]的第一次学习编程的人来说也是很好的参考。
 
-For more information about Checkmarx, visit [http://www.checkmarx.com][2]
-or follow us on Twitter: [@checkmarx][7]
+## 你将学到什么
 
-## About OWASP Secure Coding Practices
+本书涵盖了[OWASP安全编码实践指南][3]的每个主题。
+提供使用Go的例子和建议，以帮助开发人员避免常见的
+错误和误区。
 
-The [Secure Coding Practices Quick Reference Guide][3] is an [OWASP][4] - Open
-Web Application Security Project. It is a "_technology agnostic set of
-general software security coding practices, in a comprehensive checklist
-format, that can be integrated into the development lifecycle_" ([source][3]).
+读完本书后，你会对自己开发安全的Go
+应用程序。
 
-[OWASP][4] itself is "_an open community dedicated to enabling organizations to
-conceive, develop, acquire, operate, and maintain applications that can be
-trusted. All of the OWASP tools, documents, forums, and chapters are free and
-open to anyone interested in improving application security_" ([source][5]).
+## 关于OWASP安全编码实践
 
-## How To Contribute
+本书是根据《安全编码实践快速参考指南》[3]为Go语言改编的，该指南是一本关于安全编码实践快速参考指南。
+参考指南][3]，一个[OWASP][4]--开放网络应用安全项目。它
+它是一套 "与技术无关的通用软件安全编码实践，采用全面的清单格式，可用于Go语言。
+它是一个 "与技术无关的通用软件安全编码实践集，采用全面的检查表格式，可以被整合到开发的
+的生命周期_"（[来源][3]）。
 
-This book was created using a few open source tools.
-If you're curious about how we built it from scratch, read the
-[How To contribute section][6].
+OWASP][4]本身是 "一个开放的社区，致力于使组织能够
+一个开放的社区，致力于使组织能够构思、开发、获取、操作和维护可以被信任的应用程序。
+信任。OWASP的所有工具、文件、论坛和章节都是免费的，并且
+开放给任何对提高应用安全感兴趣的人"（[来源][5]）。
+
+## 如何贡献
+
+本书是使用一些开源工具创建的。
+如果你对我们如何从头开始构建它感到好奇，请阅读
+[如何贡献部分][6]。
+
+## 许可证
+
+本文件在知识共享署名-相同方式共享4.0下发布。
+国际许可证（CC BY-SA 4.0）。对于任何重新使用或分发，你必须
+向他人明确说明本作品的许可条款。
+[https://creativecommons.org/licenses/by-sa/4.0/][11]
 
 [1]: https://golang.org
 [2]: https://www.checkmarx.com
