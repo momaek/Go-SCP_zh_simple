@@ -1,69 +1,46 @@
-Validation and storing authentication data
+验证和存储认证数据
 ==========================================
 
-## Validation
+## 验证
 ----------
 
-The key subject of this section is the "authentication data storage", since more
-often than desirable, user account databases are leaked on the Internet.
-Of course, this is not guaranteed to happen. But in the case of such an event,
-collateral damages can be avoided if authentication data, especially passwords,
-are stored properly.
+鉴于越来越多的用户帐户数据库在 Internet 上泄露，本节的关键主题是“身份验证数据存储”。当然，这不能保证一定会发生，但在这种情况下，如果正确存储身份验证数据，尤其是密码，则可以避免附带损害。
 
-First, let's be clear that "_all authentication controls should fail
-securely_". We recommend you read all other "Authentication and Password
-Management" sections, since they cover recommendations about reporting back
-wrong authentication data and how to handle logging.
+首先，让我们明确“_所有身份验证控制都应该安全的失败_”。 我们建议你阅读“身份验证和密码管理”的所有其他部分，因为它们涵盖了有关报告错误身份验证数据以及如何处理日志记录的建议。
 
-One other preliminary recommendation is as follow: for sequential authentication
-implementations (like Google does nowadays), validation should happen only on
-the completion of all data input, on a trusted system (e.g. the server).
+另一项初步建议如下：
+* 对于顺序身份验证实现（就像 Google 现在所做的那样），验证应该只在所有数据输入完成时发生，在受信任的系统（例如服务器）上。
 
 
-## Storing password securely: the theory
+## 安全存储密码：理论
 
-Now let's discuss storing passwords.
+现在让我们讨论存储密码。
 
-You really don't need to store passwords, since they are provided by the users
-(plaintext). But you will need to validate on each authentication whether users
-are providing the same token.
+你真的不需要存储密码，因为它们是由用户提供的（明文）。但是你需要在每次身份验证时验证用户是否提供相同的令牌。
 
-So, for security reasons, what you need is a "one way" function `H`, so that for
-every password `p1` and `p2`, `p1` is different from `p2`, `H(p1)` is also
-different from `H(p2)`[^1].
+因此，出于安全原因，你需要的是“单向”函数 `H`，因此对于每个密码 `p1` 和 `p2`，`p1` 与 `p2` 不同，`H(p1)` 是也不同于`H(p2)`[^1]。
 
-Does this sound, or look like math?
-Pay attention to this last requirement: `H` should be such a function that
-there's no function `H⁻¹` so that `H⁻¹(H(p1))` is equal to `p1`. This means
-that there's no way back to the original `p1`, unless you try all possible
-values of `p`.
+这听起来或看起来像数学吗？
 
-If `H` is one-way only, what's the real problem about account leakage?
+注意最后一个要求：`H` 不应该有这样的`H⁻¹(H(p1))` 等于`p1`的 `H⁻¹` 这个函数。这样的话就没办法通过 `H(p1)` 逆向推导出 `p1`，除非你尝试所有可能的 `p` 值。
 
-Well, if you know all possible passwords, you can pre-compute their hashes and
-then run a rainbow table attack.
+如果“H”只是单向，那么帐户泄漏的真正问题是什么？
 
-Certainly you were already told that passwords are hard to manage from user's
-point of view, and that users are not only able to re-use passwords, but they
-also tend to use something that's easy to remember, hence somehow guessable.
+好吧，如果你知道所有可能的密码，你可以预先计算它们的哈希值，然后运行彩虹表攻击。
 
-How can we avoid this?
+当然你已经知道，从用户的角度来看，密码很难管理。并且用户不仅能够重复使用密码，而且他们还倾向于使用易于记住的东西，所以他们的秘密是可以用某种方式猜测的。
 
-The point is: if two different users provide the same password `p1`, we should
-store a different hashed value.
-It may sound impossible, but the answer is `salt`: a pseudo-random **unique per
-user password** value which is prepended to `p1`, so that the resulting hash is
-computed as follows: `H(salt + p1)`.
+我们怎样才能避免这种情况？
 
-So each entry on a passwords store should keep the resulting hash, and the
-`salt` itself in plaintext: `salt` is not required to remain private.
+关键是：如果两个不同的用户提供相同的密码“p1”，我们应该存储不同的哈希值。这听起来可能是不可能的，但还是可以做到的 `salt`：一个伪随机 ** 每个用户密码唯一** 值，它被添加到 `p1` 之前，因此结果哈希计算如下：`H(salt + p1 )`。
 
-Last recommendations.
-* Avoid using deprecated hashing algorithms (e.g. SHA-1, MD5, etc)
-* Read the [Pseudo-Random Generators section][1].
+因此，密码存储中的每个条目都存的是哈希值，并且“salt”本身以明文形式存储。
 
-The following code-sample shows a basic example of how this works:
+最后的建议。
+* 避免使用过时的散列算法（例如 SHA-1、MD5 等）
+* 阅读 [伪随机生成器部分][1]。
 
+下面是一个简单的示例：
 ```go
 package main
 
@@ -115,32 +92,19 @@ func main() {
 }
 ```
 
-However, this approach has several flaws and should not be used. It is shown
-here only to illustrate the theory with a practical example. The next section
-explains how to correctly salt passwords in real life.
+但是，这种方法有几个缺陷，不能在实际项目里使用。在这里展示只是为了用一个实际的例子来说明理论，下一节将解释如何在现实生活中正确地为密码加盐。
 
-## Storing password securely: the practice
+## 安全存储密码：实践
 
-One of the most important sayings in cryptography is: **never roll your own
-crypto**. By doing so, one can put the entire application at risk. It is a
-sensitive and complex topic. Hopefully, cryptography provides tools and
-standards reviewed and approved by experts. It is therefore important to use
-them instead of trying to re-invent the wheel.
+密码学中最重要的格言之一是：**永远不要公布自己的加密方式**，这样做可能会使整个应用程序处于危险之中。这是一个敏感而复杂的话题，我们期望的是密码学提供经过的工具和标准都是经过专家审查和批准的。因此，重要的是使用它们而不是试图重新造轮子。
 
-In the case of password storage, the hashing algorithms recommended by
-[OWASP][2] are [`bcrypt`][2], [`PDKDF2`][3], [`Argon2`][4] and [`scrypt`][5].
-Those take care of hashing and salting passwords in a robust way. Go authors
-provide an extended package for cryptography, that is not part of the standard
-library. It provides robust implementations for most of the aforementioned
-algorithms. It can be downloaded using  `go get`:
+在密码存储的情况下，[OWASP][2]推荐的哈希算法有[`bcrypt`][2]、[`PDKDF2`][3]、[`Argon2`][4]和[`scrypt` ][5]，这些是以健壮的方式处理散列和加盐密码。 Go 作者为密码学提供了一个扩展包，它不是标准库的一部分。它为大多数上述算法提供了健壮的实现。它可以使用`go get`下载：
 
 ```
 go get golang.org/x/crypto
 ```
 
-The following example shows how to use bcrypt, which should be good enough for
-most of the situations. The advantage of bcrypt is that it is simpler to use,
-and is therefore less error-prone.
+下面的例子展示了如何使用 `bcrypt` ，这对于大多数情况应该已经足够了。`bcrypt` 的优点是使用更简单，因此不易出错：
 
 ```go
 package main
@@ -182,15 +146,15 @@ func main() {
 }
 ```
 
-Bcrypt also provides a simple and secure way to compare a plaintext password
-with an already hashed password:
+`Bcrypt` 还提供了一种简单而安全的方式来比较明文密码使用已经散列的密码：
 
- ```go
- ctx := context.Background()
+```go
 
- // credentials to validate
- email := []byte("john.doe@somedomain.com")
- password := []byte("47;u5:B(95m72;Xq")
+ctx := context.Background()
+
+// credentials to validate
+email := []byte("john.doe@somedomain.com")
+password := []byte("47;u5:B(95m72;Xq")
 
 // fetch the hashed password corresponding to the provided email
 record := db.QueryRowContext(ctx, "SELECT hash FROM accounts WHERE email = ? LIMIT 1", email)
@@ -210,17 +174,11 @@ if bcrypt.CompareHashAndPassword(password, []byte(expectedPassword)) != nil {
     // error should be returned so that a GENERIC message "Sign-in attempt has
     // failed, please check your credentials" can be shown to the user.
 }
- ```
+```
 
-If you're not comfortable with password hashing and comparison
-options/parameters, better delegating the task to specialized third-party
-package with safe defaults. Always opt for an actively maintained package and
-remind to check for known issues.
+如果对官方 `Bcrypt` 的参数或者选项不满意，那么还可以使用第三方的包
 
-* [passwd][6] - A Go package that provides a safe default abstraction for
-  password hashing and comparison. It has support for original go bcrypt
-  implementation, argon2, scrypt, parameters masking and key'ed (uncrackable)
-  hashes.
+* [passwd][6] - 一个提供密码哈希和比较的 Go 包，它支持原始的 go bcrypt 实现、argon2、scrypt、参数屏蔽和密钥（不可破解）哈希。
 
 [^1]: Hashing functions are the subject of Collisions but recommended hashing functions have a really low collisions probability
 

@@ -1,39 +1,18 @@
-Authentication and Password Management
+身份验证和密码管理
 ======================================
 
-[OWASP Secure Coding Practices][1] is a valuable document for programmers to
-help them to validate if all best practices were followed during project
-implementation. Authentication and Password Management are critical parts of any
-system and they are covered in detail from user signup, to credentials storage,
-password reset and private resources access.
+[OWASP 安全编码实践][1]是一份有价值的文档，可帮助程序员验证在项目实施过程中是否遵循了所有最佳实践。身份验证和密码管理是任何系统的关键部分，从用户注册到凭据存储、密码重置和私有资源访问，都对它们进行了详细介绍。
 
-Some guidelines may be grouped for more in-depth details. Plus, source code 
-examples are provided to illustrate the topics.
+为了获得更深入的细节一些指南可能会被分组。此外，还提供了源代码示例来说明这些主题。
 
-## Rules of Thumb
+## 经验法则
 
-Let's start with the rules of thumb: "_all authentication controls must be
-enforced on a trusted system_" which usually is the server where the
-application's backend is running.
+让我们从经验法则开始：“_所有身份验证控制必须在受信任的系统上强制执行_”，这通常是运行应用程序后端的服务器。
 
-For the sake of system's simplicity, and to reduce the points of failure, you
-should utilize standard and tested authentication services. Usually frameworks
-already have such a module and you're encouraged to use them as they are
-developed, maintained, and used by many people behaving as a centralized
-authentication mechanism. Nevertheless, you should "_inspect the code carefully
-to ensure it is not affected by any malicious code_", and be sure that it
-follows the best practices.
+为了系统的简单性和减少故障点，您应该使用标准和经过测试的身份验证服务。通常框架已经有这样的模块，并且鼓励您使用它们，因为它们被许多人作为集中式身份验证机制开发、维护和使用。尽管如此，您应该“_仔细检查代码以确保它不受任何恶意代码的影响_”，并确保它遵循最佳实践。
 
-Resources which require authentication should not perform it themselves.
-Instead, "_redirection to and from the centralized authentication control_"
-should be used. Be careful handling redirection: you should redirect only to
-local and/or safe resources.
+需要身份验证的资源不应自己做验证。相反，应该使用“_redirection to and from the central authentication control_”。小心处理重定向：您应该只重定向到本地和 / 或安全资源。
 
-Authentication should not be used only by the application's users, but also by
-your own application when it requires "_connection to external systems that
-involve sensitive information or functions_". In these cases, "_authentication
-credentials for accessing services external to the application should be
-encrypted and stored in a protected location on a trusted system (e.g., the
-server). The source code is NOT a secure location_".
+身份验证不应仅由给用户使用，也应由您自己在需要“_连接到涉及敏感信息或功能的外部系统_”时也应该要验证身份。例如，“_用于访问应用程序外部服务的身份验证凭据应加密并存储在受信任系统（例如服务器）上的受保护位置。凭据放在源码里是不安全的_”。
 
 [1]: https://www.owasp.org/index.php/OWASP_Secure_Coding_Practices_-_Quick_Reference_Guide

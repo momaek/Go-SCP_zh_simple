@@ -1,19 +1,10 @@
-Other guidelines
+其他指南
 ================
 
-Authentication is a critical part of any system, therefore you should always
-employ correct and safe practices. Below are some guidelines to make your
-authentication system more resilient:
+身份验证是任何系统的关键部分，因此您应该始终采用正确和安全的做法。以下是使您的身份验证系统更具弹性的一些准则：
 
-* "_Re-authenticate users prior to performing critical operations_"
-* "_Use Multi-Factor Authentication for highly sensitive or high value
-  transactional accounts_"
-* "_Implement monitoring to identify attacks against multiple user accounts,
-  utilizing the same password. This attack pattern is used to bypass standard
-  lockouts, when user IDs can be harvested or guessed_"
-* "_Change all vendor-supplied default passwords and user IDs or disable the
-  associated accounts_"
-* "_Enforce account disabling after an established number of invalid login
-  attempts (e.g., five attempts is common).  The account must be disabled for a
-  period of time sufficient to discourage brute force guessing of credentials,
-  but not so long as to allow for a denial-of-service attack to be performed_"
+* “_在执行关键操作之前重新验证用户_”
+* “_对高度敏感或高价值的交易账户使用多重身份验证_”
+* “_实施监控以识别针对多个用户帐户的攻击，使用相同的密码。当可以收集或猜测用户 ID 时，此攻击模式用于绕过标准锁定_”
+* “_更改所有供应商提供的默认密码和用户 ID 或禁用关联的帐户_”
+* "_帐户在无效登录尝试次数达到规定次数后禁用登录（例如，比较常见就是五次）。帐户必须禁用足够长的时间以阻止对凭据的暴力猜测，但是也不能太长，这样正常用户就不能登录了_"

@@ -42,3 +42,8 @@ A common practice for password reset is the "Security Question", whose answer
 was previously configured by the account owner. "_Password reset questions
 should support sufficiently random answers_": asking for "Favorite Book?" may
 lead to "The Bible" which makes this reset questions undesirable in most cases.
+
+密码政策
+==================
+
+密码是资产，是大多数身份验证系统的一部分，也是攻击者的首要目标。
