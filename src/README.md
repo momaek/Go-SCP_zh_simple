@@ -70,3 +70,6 @@ OWASP][4]本身是 "一个开放的社区，致力于使组织能够
 [6]: /howto-contribute.md
 [7]: https://www.twitter.com/checkmarx
 [8]: https://tour.golang.org/list
+[12]: dist/go-webapp-scp.pdf
+[13]: dist/go-webapp-scp.mobi
+[14]: dist/go-webapp-scp.epub
