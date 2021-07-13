@@ -1,4 +1,4 @@
-概述
+Summary
 =======
 
 * [简介](README.md)
@@ -6,15 +6,15 @@
     * [验证](input-validation/validation.md)
     * [数据清洗](input-validation/sanitization.md)
 * [输出编码](output-encoding/README.md)
-    * [XSS](output-encoding/cross-site-scripting.md)
-    * [SQL注入](output-encoding/sql-injection.md)
-* [Authentication and Password Management](authentication-password-management/README.md)
-    * [Communicating authentication data](authentication-password-management/communicating-authentication-data.md)
-    * [Validation and Storage](authentication-password-management/validation-and-storage.md)
-    * [Password policies](authentication-password-management/password-policies.md)
-    * [Other guidelines](authentication-password-management/other-guidelines.md)
-* [Session Management](session-management/README.md)
-* [Access Control](access-control/README.md)
+    * [XSS - Cross-Site Scripting](output-encoding/cross-site-scripting.md)
+    * [SQL Injection](output-encoding/sql-injection.md)
+* [身份验证和密码管理](authentication-password-management/README.md)
+    * [通信认证数据](authentication-password-management/communicating-authentication-data.md)
+    * [验证和存储认证数据](authentication-password-management/validation-and-storage.md)
+    * [密码策略](authentication-password-management/password-policies.md)
+    * [其他指南](authentication-password-management/other-guidelines.md)
+* [会话管理](session-management/README.md)
+* [访问控制](access-control/README.md)
 * [Cryptographic Practices](cryptographic-practices/README.md)
     * [Pseudo-Random Generators](cryptographic-practices/pseudo-random-generators.md)
 * [Error Handling and Logging](error-handling-logging/README.md)
@@ -32,5 +32,8 @@
     * [Stored Procedures](database-security/stored-procedures.md)
 * [File Management](file-management/README.md)
 * [Memory Management](memory-management/README.md)
-* [General Coding Practices](general-coding-practices.md)
+* General Coding Practices
+    * [Cross-Site Request Forgery](general-coding-practices/cross-site-request-forgery.md)
+    * [Regular Expressions](general-coding-practices/regular-expressions.md)
 * [How To Contribute](howto-contribute.md)
+* [Final Notes](final-notes.md)
